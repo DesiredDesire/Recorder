@@ -6,8 +6,8 @@ import SafeServiceClient from "@gnosis.pm/safe-service-client";
 import EthersAdapter from "@gnosis.pm/safe-ethers-lib";
 import Safe from "@gnosis.pm/safe-core-sdk";
 import { GnosisMultisendStrategy } from "./strategies/GnosisMultisendStrategy.class";
+import { PRIVATE_KEY } from "../privatekey";
 
-const PRIVATE_KEY = "";
 const senderAddress = "0x4E9B1c9e75D059cF56e4E670aC20f3d67b4824E2";
 const safeAddress = "0x1723eCac74D89eDEc0FD45a14283c8BA3a6B61d4";
 const transactionServiceUrl = {

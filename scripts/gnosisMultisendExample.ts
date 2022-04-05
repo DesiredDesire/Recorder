@@ -9,14 +9,24 @@ import {
   GnosisMultisendStrategy,
   GnosisMultisendStrategyParams,
 } from "./strategies/GnosisMultisendStrategy.class";
-import { PRIVATE_KEY } from "../privatekey";
 
-const senderAddress = "0x3CEb3f792C5C3f3f74f61fE6E08a6005B5fBe4F3";
+// PARAMETERS
+// address of gnosis Safe
 const safeAddress = "0xCe0c0D75a1841D34A8Df6f4961478115ae29E5fb";
+// publicKey of one of the gnosisSafe owners
+const senderAddress = "0x3CEb3f792C5C3f3f74f61fE6E08a6005B5fBe4F3";
+//private key coresponding to senderAddress
+import { PRIVATE_KEY } from "../privatekey";
+// SafeService Urls
 const transactionServiceUrl = {
   rinkeby: "https://safe-transaction.rinkeby.gnosis.io/",
   mainnet: "https://safe-transaction.gnosis.io",
 };
+// provider
+const infuraProvider = new ethers.providers.InfuraProvider(
+  "rinkeby",
+  "9aa3d95b3bc440fa88ea12eaa4456161"
+);
 
 const hre = require("hardhat");
 
@@ -24,10 +34,6 @@ async function main() {
   // to initialize  Recorder:
   // 1. initialize strategy
   // 1.1 speify strategy-speific params
-  const infuraProvider = new ethers.providers.InfuraProvider(
-    "rinkeby",
-    "9aa3d95b3bc440fa88ea12eaa4456161"
-  );
   const safeOwner = new ethers.Wallet(PRIVATE_KEY, infuraProvider);
   const ethAdapter = new EthersAdapter({
     ethers,
@@ -78,4 +84,4 @@ main()
   .catch((error) => {
     console.log(error);
     process.exit(1);
-  });
+  })git 

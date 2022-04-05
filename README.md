@@ -9,4 +9,10 @@ For now the implemented strategies are:
   
   gnosisMultisendStrategy.class - batches all transactions and sends them to specified gnosisSafe
   
-Check oneByOneExample.ts and gnosisMultisendExample.ts to see how it is done.
+Check oneByOneExample.ts
+
+$ npx hardhat run ./scripts/oneByOneExample.ts --network hardhat
+  
+  and gnosisMultisendExample.ts (one needs to specify some parameters in files)
+  
+  $ npx hardhat run ./scripts/gnosisMultisendExample.ts

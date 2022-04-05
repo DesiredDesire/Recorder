@@ -1,12 +1,9 @@
-import { UnsignedTransaction, Signer, Transaction } from "ethers";
+import { UnsignedTransaction, Transaction } from "ethers";
 import { Strategy } from "./strategies/Strategy.interface";
 
-const hre = require("hardhat");
-
-export interface StrategyFunction {
-  (signer: Signer, txsToExecute: UnsignedTransaction[]): Promise<any[]>;
-}
-
+// class responsible for recoding and executing transactions
+// construction:
+//  strategy - that will be used to execute transactions
 export class Recorder {
   recordedTransactions: UnsignedTransaction[] = [];
   executedTransactions: Transaction[] = [];
@@ -16,10 +13,12 @@ export class Recorder {
     this.strategy = strategy_;
   }
 
+  // pushes an unsigned transaction (the paprameter) to the recordedTransaction List
   record(transaction: UnsignedTransaction) {
     this.recordedTransactions.push(transaction);
   }
 
+  // execute all recorderTransaction in order using strategy and clears recordedTransaction
   async execute(): Promise<Transaction[]> {
     const response = await this.strategy.strategyFunction(
       this.recordedTransactions

@@ -4,6 +4,7 @@ import { Strategy } from "./Strategy.interface";
 import SafeServiceClient from "@gnosis.pm/safe-service-client";
 import { MetaTransactionData } from "@gnosis.pm/safe-core-sdk-types";
 
+//Strategy-specific parameters
 export type GnosisMultisendStrategyParams = {
   safeSdk: Safe;
   safeServiceClient: SafeServiceClient;
@@ -11,20 +12,22 @@ export type GnosisMultisendStrategyParams = {
   senderAddress: string;
 };
 
+// Implementation of Strategy.interface
+// Batches all transactions and sends them as one to the gnosisSafe
+// need to specify during construction:
+// safeSdk - gnosisSafe interface
+// SafeServiceClient - example : "https://safe-transaction.gnosis.io" mainnet address
+// safeAddress - safe Address on blockchain
+// senderAddress- sender adress (public key)
 export class GnosisMultisendStrategy implements Strategy {
   params: GnosisMultisendStrategyParams;
 
-  constructor(
-    safeSdk: Safe,
-    safeServiceClient: SafeServiceClient,
-    safeAddress: string,
-    senderAddress: string
-  ) {
+  constructor(params: GnosisMultisendStrategyParams) {
     this.params = {
-      safeSdk: safeSdk,
-      safeServiceClient: safeServiceClient,
-      safeAddress: safeAddress,
-      senderAddress: senderAddress,
+      safeSdk: params.safeSdk,
+      safeServiceClient: params.safeServiceClient,
+      safeAddress: params.safeAddress,
+      senderAddress: params.senderAddress,
     };
   }
 

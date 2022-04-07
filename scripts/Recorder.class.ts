@@ -19,7 +19,7 @@ export class Recorder {
   }
 
   // execute all recorderTransaction in order using strategy and clears recordedTransaction
-  async execute(): Promise<Transaction[]> {
+  async execute(): Promise<any[]> {
     const response = await this.strategy.strategyFunction(
       this.recordedTransactions
     );
